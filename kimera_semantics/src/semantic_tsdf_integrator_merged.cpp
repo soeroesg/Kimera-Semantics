@@ -326,7 +326,6 @@ void MergedSemanticTsdfIntegrator::integrateVoxel(
                         &mutexes_,
                         voxel,
                         semantic_voxel);
-
   }
 }
 

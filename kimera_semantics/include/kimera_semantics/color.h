@@ -67,9 +67,6 @@ inline SemanticLabelToColorMap getRandomSemanticLabelToColorMap() {
     semantic_label_color_map_[i] = vxb::randomColor();
   }
   // Make first colours easily distinguishable.
-  CHECK_GE(semantic_label_color_map_.size(), 8);
-  //We won't use this check, color_map size is numberic limit max anyways
-  //CHECK_GE(semantic_label_color_map_.size(), max_possible_label);
   // TODO(Toni): Check it Matches with default value for SemanticVoxel!
   //The semantic Labels written here are only meaningful for the Tesse simulation
   semantic_label_color_map_.at(0) = HashableColor::Gray();    // Label unknown

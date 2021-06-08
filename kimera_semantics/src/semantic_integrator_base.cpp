@@ -120,9 +120,9 @@ void SemanticIntegratorBase::setSemanticProbabilities() {
   CHECK_NEAR(
       semantic_log_likelihood_.sum(),
       semantic_config_.total_number_of_labels_ * log_match_probability_ +
-      std::pow(semantic_config_.total_number_of_labels_, 2) * log_non_match_probability_ -
-      semantic_config_.total_number_of_labels_ * log_non_match_probability_,
-      10e-2);
+          std::pow(semantic_config_.total_number_of_labels_, 2) * log_non_match_probability_ -
+          semantic_config_.total_number_of_labels_ * log_non_match_probability_,
+      1000 * vxb::kFloatEpsilon);
 }
 
 // TODO(Toni): Complete this function!!
@@ -192,8 +192,7 @@ void SemanticIntegratorBase::updateSemanticVoxel(
   }
   ////////////////////////////////////////////////////////////////////////////
   //}
-
-  }
+}
 
 // Will return a pointer to a voxel located at global_voxel_idx in the tsdf
 // layer. Thread safe.
@@ -373,6 +372,9 @@ void SemanticIntegratorBase::calculateMaximumLikelihoodLabel(
   CHECK(!semantic_posterior.hasNaN())
       << "Eigen's maxCoeff has undefined behaviour with NaNs, fix your "
          "posteriors.";
+  // TODO(Toni): if the semantic_label is still unknown, then, if the
+  // kUnknownSemanticLabel is set to something != 0, the 0 class will be
+  // unfairly shown as the class for this voxel, while in reality we don't know.
   semantic_posterior.maxCoeff(semantic_label);
 }
 

@@ -59,7 +59,7 @@
         <arg name="left_cam_topic"              value="$(arg left_cam_topic)"/>
         <arg name="right_cam_topic"             value="$(arg right_cam_topic)"/>
         <arg name="pointcloud"                  value="$(arg pointcloud)"/>
-        <arg name="disparity_image"             value="disparity"/>
+        <arg name="disparity_image"             value="/disparity"/>
         <arg name="depth_image"                 value="$(arg left_cam_stereo_depth_topic)"/>
         <arg name="convert_disparity_img_to_depth_img" value="true"/>
       </include>
@@ -125,7 +125,6 @@
 
     <param name="semantic_label_2_color_csv_filepath"
     value="$(find kimera_semantics_ros)/cfg/tesse_multiscene_office1_segmentation_mapping.csv"/>
-    <param name="total_number_of_labels" value="21"/>
 
     <param name="publish_pointclouds"     value="false"/>
     <param name="update_mesh_every_n_sec" value="0.1" />
